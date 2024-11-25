@@ -16,11 +16,11 @@ public class ElectroShopPK implements Serializable {
 	/**
 	 *  Идентификатор магазина
 	 */
-	Long shopId;
+	private Long shopId;
 	
 	/**
 	 *  Идентификатор электротовара
 	 */
-	Long electroItemId;
+	private Long electroItemId;
 
 }

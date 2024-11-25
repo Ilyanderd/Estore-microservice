@@ -21,18 +21,18 @@ public class ElectroShop {
 	 */
 	@Id
 	@Column(name = "shopId", nullable = false)
-	Long shopId;
+	private Long shopId;
 	
 	/**
 	 * Идентификатор электротовара
 	 */
 	@Id
 	@Column(name = "electroItemId", nullable = false)
-	Long electroItemId;
+	private Long electroItemId;
 	
 	/**
 	 * Оставшееся количество
 	 */
 	@Column(name = "count_", nullable = false)
-	int count;
+	private int count;
 }
