@@ -1,50 +1,49 @@
 package ru.isands.test.estore.rest;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import io.swagger.v3.oas.annotations.tags.Tag;
-import ru.isands.test.estore.dao.entity.Employee;
-import ru.isands.test.estore.service.EmployeeService;
+import ru.isands.test.estore.dao.entity.Shop;
+import ru.isands.test.estore.service.ShopService;
 
 import java.util.List;
 
 @RestController
-@Tag(name = "Employee", description = "Сервис для выполнения операций над сотрудниками магазина")
-@RequestMapping("/estore/api/employee")
+@Tag(name = "Shop", description = "Сервис для выполнения операций над магазинами")
+@RequestMapping("/estore/api/shop")
 @AllArgsConstructor
-public class EmployeeController {
+public class ShopController {
 
-    private final EmployeeService service;
+    private final ShopService service;
 
     @GetMapping
-    public ResponseEntity<?> getEmployees() {
+    public ResponseEntity<?> getShops() {
         try {
-            List<Employee> employees = service.getEmployees();
+            List<Shop> shops = service.getShops();
 
-            return new ResponseEntity<>(employees, HttpStatus.OK);
+            return new ResponseEntity<>(shops, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getEmployee(@PathVariable("id") long id) {
+    public ResponseEntity<?> getShop(@PathVariable long id) {
         try {
-            Employee employee = service.getEmployee(id);
+            Shop shops = service.getShop(id);
 
-            return new ResponseEntity<>(employee, HttpStatus.OK);
+            return new ResponseEntity<>(shops, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 
     @PostMapping
-    public ResponseEntity<?> addEmployee(@RequestBody Employee employee) {
+    public ResponseEntity<?> addShop(@RequestBody Shop shop) {
         try {
-            service.addEmployee(employee);
+            service.addShop(shop);
 
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
@@ -53,9 +52,9 @@ public class EmployeeController {
     }
 
     @PutMapping
-    public ResponseEntity<?> updateEmployee(@RequestBody Employee employee) {
+    public ResponseEntity<?> updateShop(@RequestBody Shop shop) {
         try {
-            service.updateEmployee(employee);
+            service.updateShop(shop);
 
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
@@ -64,9 +63,9 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteEmployee(@PathVariable("id") long id) {
+    public ResponseEntity<?> deleteShop(@PathVariable long id) {
         try {
-            service.deleteEmployee(id);
+            service.deleteShop(id);
 
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {

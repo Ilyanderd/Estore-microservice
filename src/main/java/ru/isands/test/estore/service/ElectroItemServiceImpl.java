@@ -3,7 +3,6 @@ package ru.isands.test.estore.service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.isands.test.estore.dao.entity.ElectroItem;
-import ru.isands.test.estore.dao.entity.Employee;
 import ru.isands.test.estore.dao.repo.ElectroItemRepository;
 
 import java.util.List;
@@ -26,7 +25,7 @@ public class ElectroItemServiceImpl implements ElectroItemService {
     @Override
     public ElectroItem getElectroItem(long id) {
         if (!repository.existsById(id)) {
-            throw new RuntimeException("Employee with id " + id + " does not exist");
+            throw new RuntimeException("ElectroItem with id " + id + " does not exist");
         }
 
         return repository.findById(id).get();
@@ -34,16 +33,28 @@ public class ElectroItemServiceImpl implements ElectroItemService {
 
     @Override
     public void addElectroItem(ElectroItem electroItem) {
+        if (repository.existsById(electroItem.getId())) {
+            throw new IllegalArgumentException("ElectroItem already exists");
+        }
 
+        repository.save(electroItem);
     }
 
     @Override
     public void updateElectroItem(ElectroItem electroItem) {
+        if (!repository.existsById(electroItem.getId())) {
+            throw new IllegalArgumentException("ElectroItem does not exist");
+        }
 
+        repository.save(electroItem);
     }
 
     @Override
     public void deleteElectroItem(long id) {
+        if (!repository.existsById(id)) {
+            throw new IllegalArgumentException("ElectroItem does not exist");
+        }
 
+        repository.deleteById(id);
     }
 }

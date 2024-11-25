@@ -20,7 +20,7 @@ public class ElectroItem implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
-    private int id;
+    private long id;
 
     /**
      * Название товара

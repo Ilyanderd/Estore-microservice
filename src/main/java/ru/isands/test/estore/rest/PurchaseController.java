@@ -1,50 +1,49 @@
 package ru.isands.test.estore.rest;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import io.swagger.v3.oas.annotations.tags.Tag;
-import ru.isands.test.estore.dao.entity.Employee;
-import ru.isands.test.estore.service.EmployeeService;
+import ru.isands.test.estore.dao.entity.Purchase;
+import ru.isands.test.estore.service.PurchaseService;
 
 import java.util.List;
 
 @RestController
-@Tag(name = "Employee", description = "Сервис для выполнения операций над сотрудниками магазина")
-@RequestMapping("/estore/api/employee")
+@Tag(name = "Purchase", description = "Сервис для выполнения операций над покупками")
+@RequestMapping("/estore/api/purchase")
 @AllArgsConstructor
-public class EmployeeController {
+public class PurchaseController {
 
-    private final EmployeeService service;
+    private final PurchaseService service;
 
     @GetMapping
-    public ResponseEntity<?> getEmployees() {
+    public ResponseEntity<?> getPurchases() {
         try {
-            List<Employee> employees = service.getEmployees();
+            List<Purchase> purchases = service.getPurchases();
 
-            return new ResponseEntity<>(employees, HttpStatus.OK);
+            return new ResponseEntity<>(purchases, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getEmployee(@PathVariable("id") long id) {
+    public ResponseEntity<?> getPurchase(@PathVariable long id) {
         try {
-            Employee employee = service.getEmployee(id);
+            Purchase purchase = service.getPurchase(id);
 
-            return new ResponseEntity<>(employee, HttpStatus.OK);
+            return new ResponseEntity<>(purchase, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 
     @PostMapping
-    public ResponseEntity<?> addEmployee(@RequestBody Employee employee) {
+    public ResponseEntity<?> addPurchase(@RequestBody Purchase purchase) {
         try {
-            service.addEmployee(employee);
+            service.addPurchase(purchase);
 
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
@@ -53,9 +52,9 @@ public class EmployeeController {
     }
 
     @PutMapping
-    public ResponseEntity<?> updateEmployee(@RequestBody Employee employee) {
+    public ResponseEntity<?> updatePurchase(@RequestBody Purchase purchase) {
         try {
-            service.updateEmployee(employee);
+            service.updatePurchase(purchase);
 
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
@@ -64,9 +63,9 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteEmployee(@PathVariable("id") long id) {
+    public ResponseEntity<?> deletePurchase(@PathVariable long id) {
         try {
-            service.deleteEmployee(id);
+            service.deletePurchase(id);
 
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {

@@ -5,45 +5,45 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.isands.test.estore.dao.entity.ElectroItem;
-import ru.isands.test.estore.service.ElectroItemService;
+import ru.isands.test.estore.dao.entity.PositionType;
+import ru.isands.test.estore.service.PositionTypeService;
 
 import java.util.List;
 
 @RestController
-@Tag(name = "ElectroItem", description = "Сервис для выполнения операций над товарами")
-@RequestMapping("/estore/api/electroItem")
+@Tag(name = "PositionType", description = "Сервис для выполнения операций над должностями")
+@RequestMapping("/estore/api/positionType")
 @AllArgsConstructor
-public class ElectroItemController {
+public class PositionTypeController {
 
-    private final ElectroItemService service;
+    private final PositionTypeService service;
 
     @GetMapping
-    public ResponseEntity<?> getElectroItems() {
+    public ResponseEntity<?> getPositionTypes() {
         try {
-            List<ElectroItem> electroItems = service.getElectroItems();
+            List<PositionType> positionTypes = service.getPositionTypes();
 
-            return new ResponseEntity<>(electroItems, HttpStatus.OK);
+            return new ResponseEntity<>(positionTypes, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getElectroItem(@PathVariable long id) {
+    public ResponseEntity<?> getPositionType(@PathVariable long id) {
         try {
-            ElectroItem electroItem = service.getElectroItem(id);
+            PositionType positionType = service.getPositionType(id);
 
-            return new ResponseEntity<>(electroItem, HttpStatus.OK);
+            return new ResponseEntity<>(positionType, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 
     @PostMapping
-    public ResponseEntity<?> addElectroItem(@RequestBody ElectroItem electroItem) {
+    public ResponseEntity<?> addPositionType(@RequestBody PositionType positionType) {
         try {
-            service.addElectroItem(electroItem);
+            service.addPositionType(positionType);
 
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
@@ -52,9 +52,9 @@ public class ElectroItemController {
     }
 
     @PutMapping
-    public ResponseEntity<?> updateElectroItem(@RequestBody ElectroItem electroItem) {
+    public ResponseEntity<?> updatePositionType(@RequestBody PositionType positionType) {
         try {
-            service.updateElectroItem(electroItem);
+            service.updatePositionType(positionType);
 
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
@@ -62,10 +62,10 @@ public class ElectroItemController {
         }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteElectroItem(@PathVariable long id) {
+    @DeleteMapping
+    public ResponseEntity<?> deletePositionType(@PathVariable long id) {
         try {
-            service.deleteElectroItem(id);
+            service.deletePositionType(id);
 
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
