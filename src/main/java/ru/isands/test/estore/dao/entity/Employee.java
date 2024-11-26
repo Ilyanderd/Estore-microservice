@@ -2,15 +2,9 @@ package ru.isands.test.estore.dao.entity;
 
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.TableGenerator;
+import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -30,7 +24,7 @@ public class Employee implements Serializable {
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "employee_counter")
     @TableGenerator(name = "employee_counter", pkColumnName = "name", pkColumnValue = "ru.isands.test.estore.dao.entity.Employee", table = "counter", valueColumnName = "currentid", allocationSize = 2)
     @Column(name = "id", unique = true, nullable = false)
-    Long id;
+    private Long id;
 
     /**
      * Фамилия сотрудника
@@ -59,14 +53,16 @@ public class Employee implements Serializable {
     /**
      * Ссылка на должность сотрудника
      */
-    @Column(name = "positionId", nullable = false)
-    private Long positionId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "position_id", nullable = false)
+    private PositionType positionId;
 
     /**
      * Ссылка на магазин, в котором работает сотрудник
      */
-    @Column(name = "shopId", nullable = false)
-    private Long shopId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "shop_id", nullable = false)
+    private Shop shopId;
 
     /**
      * Пол сотрудника (true - мужской, false - женский)
@@ -74,4 +70,6 @@ public class Employee implements Serializable {
     @Column(name = "gender", nullable = false)
     private boolean gender;
 
+    /*@OneToMany
+    private List<ElectroEmployee> electroEmployees;*/
 }

@@ -15,24 +15,24 @@ import lombok.Setter;
 @IdClass(ElectroShopPK.class)
 @Table(name = "store_eshop")
 public class ElectroShop {
-	
-	/**
-	 * Идентификатор магазина
-	 */
-	@Id
-	@Column(name = "shopId", nullable = false)
-	private Long shopId;
-	
-	/**
-	 * Идентификатор электротовара
-	 */
-	@Id
-	@Column(name = "electroItemId", nullable = false)
-	private Long electroItemId;
-	
-	/**
-	 * Оставшееся количество
-	 */
-	@Column(name = "count_", nullable = false)
-	private int count;
+
+    /**
+     * Идентификатор магазина
+     */
+    @Id
+    @Column(name = "shop_id", nullable = false)
+    private Long shopId;
+
+    /**
+     * Идентификатор электротовара
+     */
+    @Id
+    @Column(name = "electro_item_id", nullable = false)
+    private Long electroItemId;
+
+    /**
+     * Оставшееся количество
+     */
+    @Column(name = "count", nullable = false)
+    private int count;
 }

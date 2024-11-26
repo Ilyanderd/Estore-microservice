@@ -11,6 +11,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "shops")
 public class Shop implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -24,7 +25,7 @@ public class Shop implements Serializable {
     /**
      * Название магазина
      */
-    @Column(name = "title", unique = true, nullable = false, length = 150)
+    @Column(name = "title", nullable = false, length = 150)
     private String title;
 
     /**

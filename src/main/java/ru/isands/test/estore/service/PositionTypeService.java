@@ -6,8 +6,12 @@ import java.util.List;
 
 public interface PositionTypeService {
     List<PositionType> getPositionTypes();
+
     PositionType getPositionType(long id);
+
     void addPositionType(PositionType positionType);
+
     void updatePositionType(PositionType positionType);
+
     void deletePositionType(long id);
 }

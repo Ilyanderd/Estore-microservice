@@ -31,13 +31,14 @@ public class ElectroItem implements Serializable {
     /**
      * Тип товара
      */
-    @Column(name = "type", nullable = false)
-    private long type;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "etype_id", nullable = false)
+    private ElectroType electroType;
 
     /**
      * Цена товара в рублях
      */
-    @Column(name = "priceInRubles", nullable = false)
+    @Column(name = "price_in_rubles", nullable = false)
     private long priceInRubles;
 
     /**

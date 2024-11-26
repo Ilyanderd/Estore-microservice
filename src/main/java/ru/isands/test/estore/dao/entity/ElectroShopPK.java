@@ -11,16 +11,15 @@ import lombok.NoArgsConstructor;
 @Data
 public class ElectroShopPK implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	
-	/**
-	 *  Идентификатор магазина
-	 */
-	private Long shopId;
-	
-	/**
-	 *  Идентификатор электротовара
-	 */
-	private Long electroItemId;
+    private static final long serialVersionUID = 1L;
 
+    /**
+     * Идентификатор магазина
+     */
+    private Long shopId;
+
+    /**
+     * Идентификатор электротовара
+     */
+    private Long electroItemId;
 }

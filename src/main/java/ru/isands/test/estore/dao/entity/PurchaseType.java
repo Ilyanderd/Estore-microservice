@@ -11,6 +11,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "PurchaseType")
 public class PurchaseType implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -22,7 +23,7 @@ public class PurchaseType implements Serializable {
     private long id;
 
     /**
-     *  Наименование типа покупки
+     * Наименование типа покупки
      */
     @Column(name = "title", nullable = false, length = 150)
     private String title;

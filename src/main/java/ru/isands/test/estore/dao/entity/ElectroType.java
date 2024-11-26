@@ -9,8 +9,9 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
-@Table(name = "ElectroType")
+@Table(name = "Electro_type")
 public class ElectroType implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -26,4 +27,7 @@ public class ElectroType implements Serializable {
      */
     @Column(name = "title", unique = true, nullable = false, length = 150)
     private String title;
+
+    /*@OneToMany
+    private List<ElectroEmployee> electroEmployees;*/
 }
