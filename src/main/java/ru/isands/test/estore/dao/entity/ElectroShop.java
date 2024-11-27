@@ -1,10 +1,6 @@
 package ru.isands.test.estore.dao.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,20 +11,21 @@ import lombok.Setter;
 @IdClass(ElectroShopPK.class)
 @Table(name = "store_eshop")
 public class ElectroShop {
-
     /**
      * Идентификатор магазина
      */
     @Id
-    @Column(name = "shop_id", nullable = false)
-    private Long shopId;
+    @ManyToOne
+    @JoinColumn(name = "shop_id")
+    private Shop shopId;
 
     /**
      * Идентификатор электротовара
      */
     @Id
-    @Column(name = "electro_item_id", nullable = false)
-    private Long electroItemId;
+    @ManyToOne
+    @JoinColumn(name = "electro_item_id")
+    private ElectroItem electroItemId;
 
     /**
      * Оставшееся количество

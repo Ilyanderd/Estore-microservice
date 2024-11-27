@@ -1,10 +1,12 @@
 package ru.isands.test.estore.dao.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.*;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -28,6 +30,11 @@ public class ElectroType implements Serializable {
     @Column(name = "title", unique = true, nullable = false, length = 150)
     private String title;
 
-    /*@OneToMany
-    private List<ElectroEmployee> electroEmployees;*/
+    @JsonIgnore
+    @OneToMany(mappedBy = "electroType", fetch = FetchType.EAGER)
+    private Set<ElectroItem> electroItems = new HashSet<>();
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "electroTypes", fetch = FetchType.EAGER)
+    private Set<Employee> employees = new HashSet<>();
 }

@@ -1,10 +1,13 @@
 package ru.isands.test.estore.dao.entity;
 
+import com.fasterxml.jackson.annotation.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -19,7 +22,7 @@ public class Shop implements Serializable {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
+    @Column(name = "id", nullable = false)
     private long id;
 
     /**
@@ -33,4 +36,16 @@ public class Shop implements Serializable {
      */
     @Column(name = "address", nullable = false)
     private String address;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "shopId", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private Set<Employee> employees = new HashSet<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "shopId", fetch = FetchType.EAGER)
+    private Set<Purchase> purchases = new HashSet<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "shopId", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private Set<ElectroShop> electroShops = new HashSet<>();
 }

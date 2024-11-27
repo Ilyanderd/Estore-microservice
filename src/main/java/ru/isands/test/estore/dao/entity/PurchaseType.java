@@ -1,10 +1,13 @@
 package ru.isands.test.estore.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -27,4 +30,8 @@ public class PurchaseType implements Serializable {
      */
     @Column(name = "title", nullable = false, length = 150)
     private String title;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "type", fetch = FetchType.EAGER)
+    private Set<Purchase> purchases = new HashSet<>();
 }

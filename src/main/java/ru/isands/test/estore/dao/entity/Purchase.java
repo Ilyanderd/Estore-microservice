@@ -23,27 +23,25 @@ public class Purchase implements Serializable {
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "purchase_counter")
     @TableGenerator(name = "purchase_counter", pkColumnName = "name", pkColumnValue = "ru.isands.test.estore.dao.entity.Purchase", table = "counter", valueColumnName = "currentid", allocationSize = 1)
     @Column(name = "id", unique = true, nullable = false)
-    private Long id;
+    private long id;
 
     /**
      * Идентификатор товара
      */
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "electro_id", nullable = false)
-    private ElectroItem electroId;
+    @Column(name = "electro_id", nullable = false)
+    private long electroId;
 
     /**
      * Идентификатор сотрудника
      */
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "employee_id", nullable = false)
-    private Employee employeeId;
+    @Column(name = "employee_id", nullable = false)
+    private long employeeId;
 
     /**
      * Идентификатор магазина
      */
     @Column(name = "shop_id", nullable = false)
-    private Long shopId;
+    private long shopId;
 
     /**
      * Дата совершения покупки

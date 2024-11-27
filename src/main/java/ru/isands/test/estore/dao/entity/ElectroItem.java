@@ -1,10 +1,13 @@
 package ru.isands.test.estore.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -31,9 +34,8 @@ public class ElectroItem implements Serializable {
     /**
      * Тип товара
      */
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "etype_id", nullable = false)
-    private ElectroType electroType;
+    @Column(name = "etype_id", nullable = false)
+    private long electroType;
 
     /**
      * Цена товара в рублях
@@ -58,4 +60,12 @@ public class ElectroItem implements Serializable {
      */
     @Column(name = "description", nullable = false)
     private String description;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "electroId", fetch = FetchType.EAGER)
+    private Set<Purchase> purchases = new HashSet<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "electroItemId", fetch = FetchType.EAGER)
+    private Set<ElectroShop> electroShops = new HashSet<>();
 }

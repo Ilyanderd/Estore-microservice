@@ -6,11 +6,11 @@ import java.util.*;
 
 import javax.persistence.*;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.*;
+import lombok.*;
 
-@Getter
 @Setter
+@Getter
 @Entity
 @Table(name = "employees")
 public class Employee implements Serializable {
@@ -53,16 +53,14 @@ public class Employee implements Serializable {
     /**
      * Ссылка на должность сотрудника
      */
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "position_id", nullable = false)
-    private PositionType positionId;
+    @Column(name = "position_id", nullable = false)
+    private long positionId;
 
     /**
      * Ссылка на магазин, в котором работает сотрудник
      */
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "shop_id", nullable = false)
-    private Shop shopId;
+    @Column(name = "shop_id", nullable = false)
+    private long shopId;
 
     /**
      * Пол сотрудника (true - мужской, false - женский)
@@ -70,6 +68,16 @@ public class Employee implements Serializable {
     @Column(name = "gender", nullable = false)
     private boolean gender;
 
-    /*@OneToMany
-    private List<ElectroEmployee> electroEmployees;*/
+    @JsonIgnore
+    @OneToMany(mappedBy = "employeeId", fetch = FetchType.EAGER)
+    private Set<Purchase> purchases = new HashSet<>();
+
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "electro_employee",
+            joinColumns = @JoinColumn(name = "employeeId"),
+            inverseJoinColumns = @JoinColumn(name = "electroTypeId")
+    )
+    private Set<ElectroType> electroTypes = new HashSet<>();
 }
