@@ -1,0 +1,64 @@
+.custom-header {
+    background-color: #343a40;
+    color: white;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+.icon-with-left-padding {
+    margin-left: 15px;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.main-sidebar {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.main-sidebar .nav-pills {
+    flex-grow: 1;
+}
+
+.main-sidebar a {
+    color: white;
+}
+
+.main-sidebar a:hover {
+    color: #ccc;
+}
+
+.container-fluid {
+    display: flex;
+}
+
+.main-sidebar {
+    width: 280px;
+    flex-shrink: 0;
+}
+
+.table-container {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    height: 20%;
+}
+
+.table-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
