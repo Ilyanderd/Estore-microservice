@@ -15,10 +15,6 @@ public class ElectroTypeServiceImpl implements ElectroTypeService {
 
     @Override
     public List<ElectroType> getElectroTypes() {
-        if (repository.findAll().isEmpty()) {
-            throw new RuntimeException("List of electroTypes is empty");
-        }
-
         return repository.findAll();
     }
 

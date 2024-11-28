@@ -15,10 +15,6 @@ public class PurchaseServiceImpl implements PurchaseService {
 
     @Override
     public List<Purchase> getPurchases() {
-        if (repository.findAll().isEmpty()) {
-            throw new IllegalArgumentException("List of Purchases is empty");
-        }
-
         return repository.findAll();
     }
 

@@ -15,10 +15,6 @@ public class ShopServiceImpl implements ShopService {
 
     @Override
     public List<Shop> getShops() {
-        if (repository.findAll().isEmpty()) {
-            throw new IllegalArgumentException("List of Shops is empty");
-        }
-
         return repository.findAll();
     }
 

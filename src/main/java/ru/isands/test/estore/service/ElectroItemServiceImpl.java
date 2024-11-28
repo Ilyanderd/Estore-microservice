@@ -15,10 +15,6 @@ public class ElectroItemServiceImpl implements ElectroItemService {
 
     @Override
     public List<ElectroItem> getElectroItems() {
-        if (repository.findAll().isEmpty()) {
-            throw new RuntimeException("List of electroItems is empty");
-        }
-
         return repository.findAll();
     }
 

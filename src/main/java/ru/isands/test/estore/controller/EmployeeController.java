@@ -1,4 +1,4 @@
-package ru.isands.test.estore.rest;
+package ru.isands.test.estore.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

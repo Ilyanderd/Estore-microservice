@@ -28,7 +28,7 @@ public class ElectroItem implements Serializable {
     /**
      * Название товара
      */
-    @Column(name = "title", unique = true, nullable = false, length = 150)
+    @Column(name = "title", nullable = false, length = 150)
     private String title;
 
     /**

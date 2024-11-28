@@ -1,49 +1,49 @@
-package ru.isands.test.estore.rest;
+package ru.isands.test.estore.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.isands.test.estore.dao.entity.PositionType;
-import ru.isands.test.estore.service.PositionTypeService;
+import ru.isands.test.estore.dao.entity.Shop;
+import ru.isands.test.estore.service.ShopService;
 
 import java.util.List;
 
 @RestController
-@Tag(name = "PositionType", description = "Сервис для выполнения операций над должностями")
-@RequestMapping("/estore/api/positionType")
+@Tag(name = "Shop", description = "Сервис для выполнения операций над магазинами")
+@RequestMapping("/estore/api/shop")
 @AllArgsConstructor
-public class PositionTypeController {
+public class ShopController {
 
-    private final PositionTypeService service;
+    private final ShopService service;
 
     @GetMapping
-    public ResponseEntity<?> getPositionTypes() {
+    public ResponseEntity<?> getShops() {
         try {
-            List<PositionType> positionTypes = service.getPositionTypes();
+            List<Shop> shops = service.getShops();
 
-            return new ResponseEntity<>(positionTypes, HttpStatus.OK);
+            return new ResponseEntity<>(shops, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getPositionType(@PathVariable long id) {
+    public ResponseEntity<?> getShop(@PathVariable long id) {
         try {
-            PositionType positionType = service.getPositionType(id);
+            Shop shops = service.getShop(id);
 
-            return new ResponseEntity<>(positionType, HttpStatus.OK);
+            return new ResponseEntity<>(shops, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 
     @PostMapping
-    public ResponseEntity<?> addPositionType(@RequestBody PositionType positionType) {
+    public ResponseEntity<?> addShop(@RequestBody Shop shop) {
         try {
-            service.addPositionType(positionType);
+            service.addShop(shop);
 
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
@@ -52,9 +52,9 @@ public class PositionTypeController {
     }
 
     @PutMapping
-    public ResponseEntity<?> updatePositionType(@RequestBody PositionType positionType) {
+    public ResponseEntity<?> updateShop(@RequestBody Shop shop) {
         try {
-            service.updatePositionType(positionType);
+            service.updateShop(shop);
 
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
@@ -62,10 +62,10 @@ public class PositionTypeController {
         }
     }
 
-    @DeleteMapping
-    public ResponseEntity<?> deletePositionType(@PathVariable long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteShop(@PathVariable long id) {
         try {
-            service.deletePositionType(id);
+            service.deleteShop(id);
 
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {

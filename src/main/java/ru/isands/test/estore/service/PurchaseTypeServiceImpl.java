@@ -15,10 +15,6 @@ public class PurchaseTypeServiceImpl implements PurchaseTypeService {
 
     @Override
     public List<PurchaseType> getPurchaseTypes() {
-        if (repository.findAll().isEmpty()) {
-            throw new IllegalArgumentException("List of PurchaseTypes is empty");
-        }
-
         return repository.findAll();
     }
 

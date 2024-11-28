@@ -1,4 +1,4 @@
-package ru.isands.test.estore.rest;
+package ru.isands.test.estore.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;

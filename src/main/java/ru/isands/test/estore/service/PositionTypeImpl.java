@@ -15,10 +15,6 @@ public class PositionTypeImpl implements PositionTypeService {
 
     @Override
     public List<PositionType> getPositionTypes() {
-        if (repository.findAll().isEmpty()) {
-            throw new IllegalArgumentException("List of PositionTypes is empty");
-        }
-
         return repository.findAll();
     }
 

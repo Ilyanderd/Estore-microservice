@@ -15,10 +15,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> getEmployees() {
-        if (repository.findAll().isEmpty()) {
-            throw new IllegalArgumentException("List of employees is empty");
-        }
-
         return repository.findAll();
     }
 
