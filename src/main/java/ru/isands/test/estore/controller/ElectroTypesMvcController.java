@@ -21,6 +21,8 @@ public class ElectroTypesMvcController {
         Page<ElectroType> electroTypesPage = service.getElectroTypes(page, size);
 
         model.addAttribute("electroTypes", electroTypesPage);
+        model.addAttribute("pageObject", electroTypesPage);
+        model.addAttribute("link", "/electroTypes");
         model.addAttribute("title", "Типы электроники");
 
         return "electroType";

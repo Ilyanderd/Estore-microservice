@@ -21,6 +21,8 @@ public class ElectroItemMvcController {
         Page<ElectroItem> electroItemsPage = service.getElectroItems(page, size);
 
         model.addAttribute("electroItems", electroItemsPage);
+        model.addAttribute("pageObject", electroItemsPage);
+        model.addAttribute("link", "/electroItems");
         model.addAttribute("title", "Электротовары");
 
         return "electroItem";

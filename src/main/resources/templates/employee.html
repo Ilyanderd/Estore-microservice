@@ -81,29 +81,7 @@
             </div>
 
             <!-- Пагинация -->
-            <div class="d-flex justify-content-center">
-                <ul class="pagination">
-                    <!-- Предыдущая страница -->
-                    <li class="page-item" th:classappend="${employees.hasPrevious()} ? '' : 'disabled'">
-                        <a class="page-link" href="#"
-                           th:href="@{/employees(page=${employees.number - 1}, size=${employees.size})}">Предыдущая</a>
-                    </li>
-
-                    <!-- Номера страниц -->
-                    <th:block th:each="i : ${#numbers.sequence(0, employees.totalPages - 1)}">
-                        <li class="page-item" th:classappend="${i == employees.number} ? 'active' : ''">
-                            <a class="page-link" th:href="@{/employees(page=${i}, size=${employees.size})}"
-                               th:text="${i + 1}"></a>
-                        </li>
-                    </th:block>
-
-                    <!-- Следующая страница -->
-                    <li class="page-item" th:classappend="${employees.hasNext()} ? '' : 'disabled'">
-                        <a class="page-link" href="#"
-                           th:href="@{/employees(page=${employees.number + 1}, size=${employees.size})}">Следующая</a>
-                    </li>
-                </ul>
-            </div>
+            <div th:insert="blocks/paging :: paging"></div>
 
             <a href="employees/add" class="btn btn-primary">Добавить</a>
             <hr>

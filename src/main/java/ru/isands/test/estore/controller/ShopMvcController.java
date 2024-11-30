@@ -21,6 +21,8 @@ public class ShopMvcController {
         Page<Shop> shopPage = service.getShops(page, size);
 
         model.addAttribute("shops", shopPage);
+        model.addAttribute("pageObject", shopPage);
+        model.addAttribute("link", "/shops");
         model.addAttribute("title", "Магазины");
 
         return "shop";

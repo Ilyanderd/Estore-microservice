@@ -71,29 +71,7 @@
             </div>
 
             <!-- Пагинация -->
-            <div class="d-flex justify-content-center">
-                <ul class="pagination">
-                    <!-- Предыдущая страница -->
-                    <li class="page-item" th:classappend="${shops.hasPrevious()} ? '' : 'disabled'">
-                        <a class="page-link" href="#"
-                           th:href="@{/shops(page=${shops.number - 1}, size=${shops.size})}">Предыдущая</a>
-                    </li>
-
-                    <!-- Номера страниц -->
-                    <th:block th:each="i : ${#numbers.sequence(0, shops.totalPages - 1)}">
-                        <li class="page-item" th:classappend="${i == shops.number} ? 'active' : ''">
-                            <a class="page-link" th:href="@{/shops(page=${i}, size=${shops.size})}"
-                               th:text="${i + 1}"></a>
-                        </li>
-                    </th:block>
-
-                    <!-- Следующая страница -->
-                    <li class="page-item" th:classappend="${shops.hasNext()} ? '' : 'disabled'">
-                        <a class="page-link" href="#"
-                           th:href="@{/shops(page=${shops.number + 1}, size=${shops.size})}">Следующая</a>
-                    </li>
-                </ul>
-            </div>
+            <div th:insert="blocks/paging :: paging"></div>
 
             <a href="shops/add" class="btn btn-primary">Добавить</a>
             <hr>

@@ -21,6 +21,8 @@ public class PositionTypeMvcController {
         Page<PositionType> positionsPage = service.getPositionTypes(page, size);
 
         model.addAttribute("positions", positionsPage);
+        model.addAttribute("pageObject", positionsPage);
+        model.addAttribute("link", "/positionTypes");
         model.addAttribute("title", "Должности");
 
         return "positionType";

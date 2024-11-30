@@ -24,6 +24,8 @@ public class EmployeeMvcController {
         Page<Employee> employeesPage = service.getEmployees(page, size);
 
         model.addAttribute("employees", employeesPage);
+        model.addAttribute("pageObject", employeesPage);
+        model.addAttribute("link", "/employees");
         model.addAttribute("title", "Сотрудники");
 
         return "employee";

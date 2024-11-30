@@ -21,6 +21,8 @@ public class PurchaseTypeMvcController {
         Page<PurchaseType> purchaseTypesPage = service.getPurchaseTypes(page, size);
 
         model.addAttribute("purchaseTypes", purchaseTypesPage);
+        model.addAttribute("pageObject", purchaseTypesPage);
+        model.addAttribute("link", "/purchaseTypes");
         model.addAttribute("title", "Типы покупок");
 
         return "purchaseType";

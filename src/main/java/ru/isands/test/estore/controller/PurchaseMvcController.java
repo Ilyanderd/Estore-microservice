@@ -24,6 +24,8 @@ public class PurchaseMvcController {
         Page<Purchase> purchasesPage = service.getPurchases(page, size);
 
         model.addAttribute("purchases", purchasesPage);
+        model.addAttribute("pageObject", purchasesPage);
+        model.addAttribute("link", "/purchases");
         model.addAttribute("title", "Покупки");
 
         return "purchase";

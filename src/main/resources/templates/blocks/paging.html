@@ -1,0 +1,25 @@
+<div th:fragment="paging">
+    <div class="d-flex justify-content-center">
+        <ul class="pagination">
+            <!-- Предыдущая страница -->
+            <li class="page-item" th:classappend="${pageObject.hasPrevious()} ? '' : 'disabled'">
+                <a class="page-link" href="#"
+                   th:href="@{${link}(page=${pageObject.number - 1}, size=${pageObject.size})}">Предыдущая</a>
+            </li>
+
+            <!-- Номера страниц -->
+            <th:block th:each="i : ${#numbers.sequence(0, pageObject.totalPages - 1)}">
+                <li class="page-item" th:classappend="${i == pageObject.number} ? 'active' : ''">
+                    <a class="page-link" th:href="@{${link}(page=${i}, size=${pageObject.size})}"
+                       th:text="${i + 1}"></a>
+                </li>
+            </th:block>
+
+            <!-- Следующая страница -->
+            <li class="page-item" th:classappend="${pageObject.hasNext()} ? '' : 'disabled'">
+                <a class="page-link" href="#"
+                   th:href="@{${link}(page=${pageObject.number + 1}, size=${pageObject.size})}">Следующая</a>
+            </li>
+        </ul>
+    </div>
+</div>
