@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <title>EStore Server</title>
     <meta charset="utf-8">
@@ -14,6 +14,7 @@
 
 <main>
     <div class="container-fluid">
+        <!-- sidebar -->
         <div class="main-sidebar d-flex flex-column flex-shrink-0 p-3 text-bg-light" style="width: 280px;">
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
                 <span class="fs-4">Разделы</span>
@@ -30,67 +31,84 @@
                     <a href="/employees" class="nav-link text-black">Сотрудники</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-black" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle text-black" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
                         Справочники
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item text-black" href="/positions">Должности</a></li>
-                        <li><a class="dropdown-item text-black" href="/electroTypes">Тип электроники</a></li>
-                        <li><a class="dropdown-item text-black" href="/shops">Магазин</a></li>
-                        <li><a class="dropdown-item text-black" href="/purchaseTypes">Тип покупки</a></li>
+                        <li><a class="dropdown-item text-black" href="/positionTypes">Должности</a></li>
+                        <li><a class="dropdown-item text-black" href="/electroTypes">Типы электроники</a></li>
+                        <li><a class="dropdown-item text-black" href="/shops">Магазины</a></li>
+                        <li><a class="dropdown-item text-black" href="/purchaseTypes">Типы покупки</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
 
-
-        <div class="table-container">
-
+        <div class="container table-container">
+            <!-- table title -->
             <div class="table-title"><span th:text="${title}"></span></div>
 
-            <table class="table table-hover table-striped table-bordered" style="height: 10% !important;">
-                <thead>
-                <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">Название товара</th>
-                    <th scope="col">Тип товара</th>
-                    <th scope="col">Цена</th>
-                    <th scope="col">Количество</th>
-                    <th scope="col">Признак архивности товара</th>
-                    <th scope="col">Описание товара</th>
-                </tr>
-                </thead>
+            <!-- Таблица -->
+            <div class="row" style="height: 57% !important;">
+                <table class="table table-hover table-striped table-bordered" style="height: 10% !important;">
+                    <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Название товара</th>
+                        <th scope="col">Тип товара</th>
+                        <th scope="col">Цена</th>
+                        <th scope="col">Количество</th>
+                        <th scope="col">Признак архивности товара</th>
+                        <th scope="col">Описание товара</th>
+                    </tr>
+                    </thead>
 
-                <tbody>
-                <tr th:each="element : ${electroItems}">
-                    <td th:text="${element.getId()}"></td>
-                    <td th:text="${element.getTitle()}"></td>
-                    <td th:text="${element.getElectroType()}"></td>
-                    <td th:text="${element.getPriceInRubles()}"></td>
-                    <td th:text="${element.getCount()}"></td>
-                    <td th:text="${element.isInStock()}"></td>
-                    <td th:text="${element.getDescription()}"></td>
-                </tr>
-                </tbody>
+                    <tbody>
+                    <tr th:each="element : ${electroItems}">
+                        <td th:text="${element.getId()}"></td>
+                        <td th:text="${element.getTitle()}"></td>
+                        <td th:text="${element.getElectroType()}"></td>
+                        <td th:text="${element.getPriceInRubles()}"></td>
+                        <td th:text="${element.getCount()}"></td>
+                        <td th:text="${element.isInStock()}"></td>
+                        <td th:text="${element.getDescription()}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
-            </table>
+            <!-- Пагинация -->
+            <div class="d-flex justify-content-center">
+                <ul class="pagination">
+                    <!-- Предыдущая страница -->
+                    <li class="page-item" th:classappend="${electroItems.hasPrevious()} ? '' : 'disabled'">
+                        <a class="page-link" href="#"
+                           th:href="@{/electroItems(page=${electroItems.number - 1}, size=${electroItems.size})}">Предыдущая</a>
+                    </li>
 
-            <button class="btn btn-primary">Добавить</button>
+                    <!-- Номера страниц -->
+                    <th:block th:each="i : ${#numbers.sequence(0, electroItems.totalPages - 1)}">
+                        <li class="page-item" th:classappend="${i == electroItems.number} ? 'active' : ''">
+                            <a class="page-link" th:href="@{/electroItems(page=${i}, size=${electroItems.size})}"
+                               th:text="${i + 1}"></a>
+                        </li>
+                    </th:block>
 
+                    <!-- Следующая страница -->
+                    <li class="page-item" th:classappend="${electroItems.hasNext()} ? '' : 'disabled'">
+                        <a class="page-link" href="#"
+                           th:href="@{/electroItems(page=${electroItems.number + 1}, size=${electroItems.size})}">Следующая</a>
+                    </li>
+                </ul>
+            </div>
+
+            <a href="electroItems/add" class="btn btn-primary">Добавить</a>
             <hr>
 
-            <label for="avatar"
-                   style="font-weight: bold">Импорт данных из csv-файла
-            </label>
-
-            <br>
-            <br>
-
-            <input class="w-100" type="file" id="avatar" name="avatar" accept="image/png, image/jpeg"
-                   style="border: 1px solid gray; border-radius: 5px"/>
+            <div th:insert="blocks/upload :: upload"></div>
         </div>
     </div>
-
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

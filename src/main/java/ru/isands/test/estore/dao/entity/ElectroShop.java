@@ -31,5 +31,5 @@ public class ElectroShop {
      * Оставшееся количество
      */
     @Column(name = "count", nullable = false)
-    private int count;
+    private Long count;
 }

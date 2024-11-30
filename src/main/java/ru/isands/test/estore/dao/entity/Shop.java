@@ -2,6 +2,7 @@ package ru.isands.test.estore.dao.entity;
 
 import com.fasterxml.jackson.annotation.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -13,9 +14,16 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "shops")
+@NoArgsConstructor
 public class Shop implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    public Shop(long id, String title, String address) {
+        this.id = id;
+        this.title = title;
+        this.address = address;
+    }
 
     /**
      * Идентификатор магазина
@@ -23,7 +31,7 @@ public class Shop implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private long id;
+    private Long id;
 
     /**
      * Название магазина

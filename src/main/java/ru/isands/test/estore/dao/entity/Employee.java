@@ -13,9 +13,21 @@ import lombok.*;
 @Getter
 @Entity
 @Table(name = "employees")
+@NoArgsConstructor
 public class Employee implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    public Employee(long id, String lastName, String firstName, String patronymic, Date birthDate, long positionId, long shopId, boolean gender) {
+        this.id = id;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.patronymic = patronymic;
+        this.birthDate = birthDate;
+        this.positionId = positionId;
+        this.shopId = shopId;
+        this.gender = gender;
+    }
 
     /**
      * Идентификатор сотрудника
@@ -54,13 +66,13 @@ public class Employee implements Serializable {
      * Ссылка на должность сотрудника
      */
     @Column(name = "position_id", nullable = false)
-    private long positionId;
+    private Long positionId;
 
     /**
      * Ссылка на магазин, в котором работает сотрудник
      */
     @Column(name = "shop_id", nullable = false)
-    private long shopId;
+    private Long shopId;
 
     /**
      * Пол сотрудника (true - мужской, false - женский)

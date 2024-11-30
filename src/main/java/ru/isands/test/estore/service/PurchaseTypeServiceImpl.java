@@ -1,6 +1,9 @@
 package ru.isands.test.estore.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.isands.test.estore.dao.entity.PurchaseType;
 import ru.isands.test.estore.dao.repo.PurchaseTypeRepository;
@@ -12,6 +15,13 @@ import java.util.List;
 public class PurchaseTypeServiceImpl implements PurchaseTypeService {
 
     private PurchaseTypeRepository repository;
+
+    @Override
+    public Page<PurchaseType> getPurchaseTypes(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+
+        return repository.findAll(pageable);
+    }
 
     @Override
     public List<PurchaseType> getPurchaseTypes() {

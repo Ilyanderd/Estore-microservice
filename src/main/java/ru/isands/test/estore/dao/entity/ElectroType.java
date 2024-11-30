@@ -12,17 +12,23 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "Electro_type")
+@NoArgsConstructor
 public class ElectroType implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    public ElectroType(long id, String title) {
+        this.id = id;
+        this.title = title;
+    }
 
     /**
      * Идентификатор типа электроники
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
-    private long id;
+    @Column(name = "id", nullable = false)
+    private Long id;
 
     /**
      * Название типа электроники

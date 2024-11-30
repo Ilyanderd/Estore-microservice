@@ -1,49 +1,49 @@
-package ru.isands.test.estore.controller;
+package ru.isands.test.estore.rest;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.isands.test.estore.dao.entity.ElectroItem;
-import ru.isands.test.estore.service.ElectroItemService;
+import ru.isands.test.estore.dao.entity.Shop;
+import ru.isands.test.estore.service.ShopService;
 
 import java.util.List;
 
 @RestController
-@Tag(name = "ElectroItem", description = "Сервис для выполнения операций над товарами")
-@RequestMapping("/estore/api/electroItem")
+@Tag(name = "Shop", description = "Сервис для выполнения операций над магазинами")
+@RequestMapping("/estore/api/shop")
 @AllArgsConstructor
-public class ElectroItemController {
+public class ShopController {
 
-    private final ElectroItemService service;
+    private final ShopService service;
 
     @GetMapping
-    public ResponseEntity<?> getElectroItems() {
+    public ResponseEntity<?> getShops() {
         try {
-            List<ElectroItem> electroItems = service.getElectroItems();
+            List<Shop> shops = service.getShops();
 
-            return new ResponseEntity<>(electroItems, HttpStatus.OK);
+            return new ResponseEntity<>(shops, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getElectroItem(@PathVariable long id) {
+    public ResponseEntity<?> getShop(@PathVariable long id) {
         try {
-            ElectroItem electroItem = service.getElectroItem(id);
+            Shop shops = service.getShop(id);
 
-            return new ResponseEntity<>(electroItem, HttpStatus.OK);
+            return new ResponseEntity<>(shops, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 
     @PostMapping
-    public ResponseEntity<?> addElectroItem(@RequestBody ElectroItem electroItem) {
+    public ResponseEntity<?> addShop(@RequestBody Shop shop) {
         try {
-            service.addElectroItem(electroItem);
+            service.addShop(shop);
 
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
@@ -52,9 +52,9 @@ public class ElectroItemController {
     }
 
     @PutMapping
-    public ResponseEntity<?> updateElectroItem(@RequestBody ElectroItem electroItem) {
+    public ResponseEntity<?> updateShop(@RequestBody Shop shop) {
         try {
-            service.updateElectroItem(electroItem);
+            service.updateShop(shop);
 
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
@@ -63,9 +63,9 @@ public class ElectroItemController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteElectroItem(@PathVariable long id) {
+    public ResponseEntity<?> deleteShop(@PathVariable long id) {
         try {
-            service.deleteElectroItem(id);
+            service.deleteShop(id);
 
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {

@@ -1,6 +1,9 @@
 package ru.isands.test.estore.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.isands.test.estore.dao.entity.PositionType;
 import ru.isands.test.estore.dao.repo.PositionTypeRepository;
@@ -9,9 +12,16 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class PositionTypeImpl implements PositionTypeService {
+public class PositionTypeServiceImpl implements PositionTypeService {
 
     private final PositionTypeRepository repository;
+
+    @Override
+    public Page<PositionType> getPositionTypes(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+
+        return repository.findAll(pageable);
+    }
 
     @Override
     public List<PositionType> getPositionTypes() {

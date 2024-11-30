@@ -1,49 +1,49 @@
-package ru.isands.test.estore.controller;
+package ru.isands.test.estore.rest;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.isands.test.estore.dao.entity.PurchaseType;
-import ru.isands.test.estore.service.PurchaseTypeService;
+import ru.isands.test.estore.dao.entity.ElectroItem;
+import ru.isands.test.estore.service.ElectroItemService;
 
 import java.util.List;
 
 @RestController
-@Tag(name = "PurchaseType", description = "Сервис для выполнения операций над типами покупок")
-@RequestMapping("/estore/api/purchaseType")
+@Tag(name = "ElectroItem", description = "Сервис для выполнения операций над товарами")
+@RequestMapping("/estore/api/electroItem")
 @AllArgsConstructor
-public class PurchaseTypeController {
+public class ElectroItemController {
 
-    private final PurchaseTypeService service;
+    private final ElectroItemService service;
 
     @GetMapping
-    public ResponseEntity<?> getPurchaseTypes() {
+    public ResponseEntity<?> getElectroItems() {
         try {
-            List<PurchaseType> purchaseType = service.getPurchaseTypes();
+            List<ElectroItem> electroItems = service.getElectroItems();
 
-            return new ResponseEntity<>(purchaseType, HttpStatus.OK);
+            return new ResponseEntity<>(electroItems, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getPurchaseType(@PathVariable long id) {
+    public ResponseEntity<?> getElectroItem(@PathVariable long id) {
         try {
-            PurchaseType purchaseType = service.getPurchaseType(id);
+            ElectroItem electroItem = service.getElectroItem(id);
 
-            return new ResponseEntity<>(purchaseType, HttpStatus.OK);
+            return new ResponseEntity<>(electroItem, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 
     @PostMapping
-    public ResponseEntity<?> addPurchaseType(@RequestBody PurchaseType purchaseType) {
+    public ResponseEntity<?> addElectroItem(@RequestBody ElectroItem electroItem) {
         try {
-            service.addPurchaseType(purchaseType);
+            service.addElectroItem(electroItem);
 
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
@@ -52,9 +52,9 @@ public class PurchaseTypeController {
     }
 
     @PutMapping
-    public ResponseEntity<?> updatePurchaseType(@RequestBody PurchaseType purchaseType) {
+    public ResponseEntity<?> updateElectroItem(@RequestBody ElectroItem electroItem) {
         try {
-            service.updatePurchaseType(purchaseType);
+            service.updateElectroItem(electroItem);
 
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
@@ -63,9 +63,9 @@ public class PurchaseTypeController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletePurchaseType(@PathVariable long id) {
+    public ResponseEntity<?> deleteElectroItem(@PathVariable long id) {
         try {
-            service.deletePurchaseType(id);
+            service.deleteElectroItem(id);
 
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {

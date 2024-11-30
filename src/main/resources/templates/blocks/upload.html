@@ -1,0 +1,12 @@
+<div th:fragment="upload">
+    <form method="POST" enctype="multipart/form-data" action="">
+        <label for="zipFile" style="font-weight: bold" class="mb-3">Импорт данных из csv-файла</label>
+
+        <div class="mb-3">
+            <input class="form-control w-100" type="file" id="zipFile" name="zipFile" accept=".zip"
+                   style="border: 1px solid gray; border-radius: 5px" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary mb-3">Загрузить</button>
+    </form>
+</div>

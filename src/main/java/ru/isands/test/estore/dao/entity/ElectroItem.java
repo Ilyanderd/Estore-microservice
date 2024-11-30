@@ -1,8 +1,7 @@
 package ru.isands.test.estore.dao.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,9 +12,19 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "ElectroItem")
+@NoArgsConstructor
 public class ElectroItem implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    public ElectroItem(String title, long electroType, long price, long count, boolean inStock, String description) {
+        this.title = title;
+        this.electroType = electroType;
+        this.priceInRubles = price;
+        this.count = count;
+        this.inStock = inStock;
+        this.description = description;
+    }
 
     /**
      * Идентификатор товара
@@ -23,7 +32,7 @@ public class ElectroItem implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
-    private long id;
+    private Long id;
 
     /**
      * Название товара
@@ -35,19 +44,19 @@ public class ElectroItem implements Serializable {
      * Тип товара
      */
     @Column(name = "etype_id", nullable = false)
-    private long electroType;
+    private Long electroType;
 
     /**
      * Цена товара в рублях
      */
     @Column(name = "price_in_rubles", nullable = false)
-    private long priceInRubles;
+    private Long priceInRubles;
 
     /**
      * Количество товара
      */
     @Column(name = "count", nullable = false)
-    private long count;
+    private Long count;
 
     /**
      * Признак архивности товара (true – товара нет в наличии, снят с продаж, false – товар в продаже)

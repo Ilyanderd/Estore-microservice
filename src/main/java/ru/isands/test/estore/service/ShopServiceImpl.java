@@ -1,6 +1,9 @@
 package ru.isands.test.estore.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.isands.test.estore.dao.entity.Shop;
 import ru.isands.test.estore.dao.repo.ShopRepository;
@@ -12,6 +15,13 @@ import java.util.List;
 public class ShopServiceImpl implements ShopService {
 
     private final ShopRepository repository;
+
+    @Override
+    public Page<Shop> getShops(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+
+        return repository.findAll(pageable);
+    }
 
     @Override
     public List<Shop> getShops() {

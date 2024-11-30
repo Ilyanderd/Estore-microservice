@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>EStore Server</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script src="../static/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<header th:insert="blocks/header :: header"></header>
+
+<h2 class="text-center">Добавить новую покупку</h2>
+
+<div class="d-flex justify-content-center align-items-center">
+    <form action="/purchases/add" method="post" class="w-50 mt-5">
+        <div class="mb-3">
+            <label for="electroId" class="form-label">Идентификатор электротовара</label>
+            <input type="number" class="form-control" id="electroId" name="electroId" required>
+        </div>
+        <div class="mb-3">
+            <label for="employeeId" class="form-label">Идентификатор сотрудника</label>
+            <input type="number" class="form-control" id="employeeId" name="employeeId" required>
+        </div>
+        <div class="mb-3">
+            <label for="shopId" class="form-label">Идентификатор магазина</label>
+            <input type="number" class="form-control" id="shopId" name="shopId" required>
+        </div>
+        <div class="mb-3">
+            <label for="purchaseDate" class="form-label">Дата/время совершения покупки</label>
+            <input type="date" class="form-control" id="purchaseDate" name="purchaseDate" required>
+        </div>
+        <div class="mb-3">
+            <label for="type" class="form-label">Тип покупки</label>
+            <input type="number" class="form-control" id="type" name="type" required>
+        </div>
+
+        <div class="mt-auto d-flex justify-content-between">
+            <a type="button" class="btn btn-secondary" href="/purchases">Отменить</a>
+            <button type="submit" class="btn btn-primary">Добавить</button>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

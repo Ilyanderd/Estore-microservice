@@ -36,8 +36,8 @@
                         Справочники
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item text-black" href="/positionTypes">Должности</a></li>
-                        <li><a class="dropdown-item text-black active" href="/electroTypes">Типы электроники</a></li>
+                        <li><a class="dropdown-item text-black active" href="/positionTypes">Должности</a></li>
+                        <li><a class="dropdown-item text-black" href="/electroTypes">Типы электроники</a></li>
                         <li><a class="dropdown-item text-black" href="/shops">Магазины</a></li>
                         <li><a class="dropdown-item text-black" href="/purchaseTypes">Типы покупки</a></li>
                     </ul>
@@ -45,55 +45,55 @@
             </ul>
         </div>
 
-        <div class="container table-container">
+        <div class="table-container">
             <!-- table title -->
             <div class="table-title"><span th:text="${title}"></span></div>
 
             <!-- Таблица -->
             <div class="row" style="height: 57% !important;">
-                <table class="table table-hover table-striped table-bordered" style="height: 10% !important;">
-                    <thead>
-                    <tr>
-                        <th scope="col">id</th>
-                        <th scope="col">Наименование</th>
-                    </tr>
-                    </thead>
+            <table class="table table-hover table-striped table-bordered" style="height: 10% !important;">
+                <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Наименование</th>
+                </tr>
+                </thead>
 
-                    <tbody>
-                    <tr th:each="element : ${electroTypes}">
-                        <td th:text="${element.getId()}"></td>
-                        <td th:text="${element.getTitle()}"></td>
-                    </tr>
-                    </tbody>
-                </table>
+                <tbody>
+                <tr th:each="element : ${positions}">
+                    <td th:text="${element.getId()}"></td>
+                    <td th:text="${element.getTitle()}"></td>
+                </tr>
+                </tbody>
+            </table>
             </div>
 
             <!-- Пагинация -->
             <div class="d-flex justify-content-center">
                 <ul class="pagination">
                     <!-- Предыдущая страница -->
-                    <li class="page-item" th:classappend="${electroTypes.hasPrevious()} ? '' : 'disabled'">
+                    <li class="page-item" th:classappend="${positions.hasPrevious()} ? '' : 'disabled'">
                         <a class="page-link" href="#"
-                           th:href="@{/electroTypes(page=${electroTypes.number - 1}, size=${electroTypes.size})}">Предыдущая</a>
+                           th:href="@{/positionTypes(page=${positions.number - 1}, size=${positions.size})}">Предыдущая</a>
                     </li>
 
                     <!-- Номера страниц -->
-                    <th:block th:each="i : ${#numbers.sequence(0, electroTypes.totalPages - 1)}">
-                        <li class="page-item" th:classappend="${i == electroTypes.number} ? 'active' : ''">
-                            <a class="page-link" th:href="@{/electroTypes(page=${i}, size=${electroTypes.size})}"
+                    <th:block th:each="i : ${#numbers.sequence(0, positions.totalPages - 1)}">
+                        <li class="page-item" th:classappend="${i == positions.number} ? 'active' : ''">
+                            <a class="page-link" th:href="@{/positionTypes(page=${i}, size=${positions.size})}"
                                th:text="${i + 1}"></a>
                         </li>
                     </th:block>
 
                     <!-- Следующая страница -->
-                    <li class="page-item" th:classappend="${electroTypes.hasNext()} ? '' : 'disabled'">
+                    <li class="page-item" th:classappend="${positions.hasNext()} ? '' : 'disabled'">
                         <a class="page-link" href="#"
-                           th:href="@{/electroTypes(page=${electroTypes.number + 1}, size=${electroTypes.size})}">Следующая</a>
+                           th:href="@{/positionTypes(page=${positions.number + 1}, size=${positions.size})}">Следующая</a>
                     </li>
                 </ul>
             </div>
 
-            <a href="electroTypes/add" class="btn btn-primary">Добавить</a>
+            <a href="positionTypes/add" class="btn btn-primary">Добавить</a>
             <hr>
 
             <div th:insert="blocks/upload :: upload"></div>

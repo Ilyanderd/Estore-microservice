@@ -2,6 +2,7 @@ package ru.isands.test.estore.dao.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -13,9 +14,15 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "PositionType")
+@NoArgsConstructor
 public class PositionType implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    public PositionType(long id, String title) {
+        this.id = id;
+        this.title = title;
+    }
 
     /**
      * Идентификатор должности
@@ -23,7 +30,7 @@ public class PositionType implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private long id;
+    private Long id;
 
     /**
      * Название должности
