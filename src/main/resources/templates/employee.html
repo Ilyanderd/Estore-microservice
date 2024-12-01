@@ -51,39 +51,41 @@
 
             <!-- Таблица -->
             <div class="row" style="height: 57% !important;">
-            <table class="table table-hover table-striped table-bordered" style="height: 10% !important;">
-                <thead>
-                <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">Фамилия</th>
-                    <th scope="col">Имя</th>
-                    <th scope="col">Отчество</th>
-                    <th scope="col">Дата рождения</th>
-                    <th scope="col">Должность</th>
-                    <th scope="col">Магазин, в котором работает</th>
-                    <th scope="col">Пол</th>
-                </tr>
-                </thead>
+                <table class="table table-hover table-striped table-bordered" style="height: 10% !important;">
+                    <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Фамилия</th>
+                        <th scope="col">Имя</th>
+                        <th scope="col">Отчество</th>
+                        <th scope="col">Дата рождения</th>
+                        <th scope="col">Должность</th>
+                        <th scope="col">Магазин, в котором работает</th>
+                        <th scope="col">Пол</th>
+                    </tr>
+                    </thead>
 
-                <tbody>
-                <tr th:each="element : ${employees}">
-                    <td th:text="${element.getId()}"></td>
-                    <td th:text="${element.getLastName()}"></td>
-                    <td th:text="${element.getFirstName()}"></td>
-                    <td th:text="${element.getPatronymic()}"></td>
-                    <td th:text="${element.getBirthDate()}"></td>
-                    <td th:text="${element.getPositionId()}"></td>
-                    <td th:text="${element.getShopId()}"></td>
-                    <td th:text="${element.isGender()}"></td>
-                </tr>
-                </tbody>
-            </table>
+                    <tbody>
+                    <tr th:each="element : ${employees}">
+                        <td th:text="${element.getId()}"></td>
+                        <td th:text="${element.getLastName()}"></td>
+                        <td th:text="${element.getFirstName()}"></td>
+                        <td th:text="${element.getPatronymic()}"></td>
+                        <td th:text="${element.getBirthDate()}"></td>
+                        <td th:text="${element.getPositionId()}"></td>
+                        <td th:text="${element.getShopId()}"></td>
+                        <td th:text="${element.isGender()}"></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
 
             <!-- Пагинация -->
             <div th:insert="blocks/paging :: paging"></div>
 
-            <a href="employees/add" class="btn btn-primary">Добавить</a>
+            <div class="container" style="margin-left: 0; padding-left: 0">
+                <a href="employees/add" class="btn btn-primary">Добавить</a>
+            </div>
             <hr>
 
             <div th:insert="blocks/upload :: upload"></div>

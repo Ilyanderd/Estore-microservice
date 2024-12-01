@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import ru.isands.test.estore.dao.entity.Employee;
 import ru.isands.test.estore.dao.repo.EmployeeRepository;
 
-import java.util.List;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
